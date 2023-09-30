@@ -7,6 +7,7 @@ app = Flask(__name__)
 BACKEND_URL = "http://flask-shop-app-service:80/shop/items"
 
 
+
 @app.route('/')
 def index():
     try:
