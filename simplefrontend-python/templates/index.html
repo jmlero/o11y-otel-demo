@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shop Frontend</title>
+</head>
+<body>
+    <h1>Shop Items</h1>
+    <ul>
+    {% for item in items %}
+        <li>
+            <strong>{{ item.name }}</strong> - Price: {{ item.price }} - Stock: {{ item.stock }}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
