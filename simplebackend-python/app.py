@@ -5,7 +5,7 @@ app = Flask(__name__)
 # This is a simulated in-memory database for our shop items.
 shop_items = [
     {"id": 1, "name": "apple", "price": 0.5, "stock": 100},
-    {"id": 2, "name": "banana", "price": 0.25, "stock": 50},
+    {"id": 2, "name": "banana", "price": 0.2, "stock": 50},
 ]
 
 @app.route('/shop/items', methods=['GET'])
