@@ -6,4 +6,4 @@ RUN pip install --no-cache-dir flask requests
 
 EXPOSE 8080
 
-CMD ["python", "frontend_app.py"]
+CMD ["python", "app.py"]

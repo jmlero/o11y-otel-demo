@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Shop Frontend</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock</title>
 </head>
+
 <body>
-    <h1>Shop Items</h1>
+    <h1>Stock</h1>
     <ul>
-    {% for item in items %}
+        {% for item in items %}
         <li>
-            <strong>{{ item.name }}</strong> - Price: {{ item.price }} - Stock: {{ item.stock }}
+            {{ item['name'] }} - Price: ${{ item['price'] }} - Stock: {{ item['stock'] }}
+            <form method="POST" action="/reduce-stock">
+                <input type="hidden" name="item_id" value="{{ item['id'] }}">
+                <label for="reduce-amount">Reduce Stock:</label>
+                <input type="number" id="reduce-amount" name="reduce_amount" min="1" max="{{ item['stock'] }}">
+                <button type="submit">Reduce</button>
+            </form>
         </li>
-    {% endfor %}
+        {% endfor %}
     </ul>
 </body>
+
 </html>

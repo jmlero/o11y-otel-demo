@@ -5,7 +5,7 @@ metadata:
   labels:
     app: flask-shop-frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: flask-shop-frontend
@@ -15,10 +15,11 @@ spec:
         app: flask-shop-frontend
     spec:
       containers:
-        - name: flask-shop-backend
+        - name: flask-shop-frontend
           image: jmlero/simplefrontend-python:0.1
           ports:
             - containerPort: 8080
+          imagePullPolicy: Always
 
 ---
 apiVersion: v1

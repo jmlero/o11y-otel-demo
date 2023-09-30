@@ -1,6 +1,18 @@
 from flask import Flask, jsonify, request
+import random
+import time
+import sys
+import logging
+
 
 app = Flask(__name__)
+
+logger = logging.getLogger(__name__)
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
 
 # This is a simulated in-memory database for our shop items.
 shop_items = [
@@ -42,6 +54,13 @@ def reduce_stock():
 
     if item['stock'] - amount < 0:
         return jsonify({"message": "Stock can't be negative."}), 400
+
+    # Generate a random sleep time 
+    sleep_time = random.uniform(0, 2)
+    time.sleep(sleep_time)  # Introduce the random sleep
+
+     # Log the request and sleep duration to stdout
+    logger.info(f"Request to reduce stock for item ID {item_id}: {amount}")
 
     item['stock'] -= amount
     return jsonify(item), 200
