@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-shop-app-deployment
+  name: flask-shop-backend
   labels:
-    app: flask-shop-app
+    app: flask-shop-backend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flask-shop-app
+      app: flask-shop-backend
   template:
     metadata:
       labels:
-        app: flask-shop-app
+        app: flask-shop-backend
     spec:
       containers:
-      - name: flask-shop-app
-        image: 
-        ports:
-        - containerPort: 5000
+        - name: flask-shop-backend
+          image: jmlero/simplebackend-python:0.1
+          ports:
+            - containerPort: 5000
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-shop-app-service
+  name: flask-shop-backend
 spec:
   selector:
-    app: flask-shop-app
+    app: flask-shop-backend
   ports:
     - protocol: TCP
       port: 80
