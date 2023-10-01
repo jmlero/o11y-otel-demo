@@ -12,7 +12,7 @@
     <ul>
         {% for item in items %}
         <li>
-            {{ item['name'] }} - Price: ${{ item['price'] }} - Stock: {{ item['stock'] }}
+            {{ item['name'] }} - Price: €{{ item['price'] }} - Stock: {{ item['stock'] }}
             <form method="POST" action="/reduce-stock">
                 <input type="hidden" name="item_id" value="{{ item['id'] }}">
                 <label for="reduce-amount">Reduce Stock:</label>

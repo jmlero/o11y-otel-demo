@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: flask-shop-backend
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
     spec:
       containers:
         - name: flask-shop-backend
@@ -20,7 +22,13 @@ spec:
           ports:
             - containerPort: 5000
           imagePullPolicy: Always
-
+          env: # Add these environment variables
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "otel-collector-collector:4318"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=flask-shop-backend"
+            - name: OTEL_COLLECTOR_NAME
+              value: "flask-shop-backend"
 ---
 apiVersion: v1
 kind: Service

@@ -1,1 +1,4 @@
 flask
+opentelemetry-instrumentation 
+opentelemetry-exporter-otlp
+opentelemetry-api

@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: flask-shop-frontend
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
     spec:
       containers:
         - name: flask-shop-frontend
@@ -20,7 +22,17 @@ spec:
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
-
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "otel-collector-collector:4318"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=flask-shop-frontend"
+            - name: OTEL_PYTHON_ID_GENERATOR
+              value: "b3"
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp"
+            - name: OTEL_SERVICE_NAME
+              value: "flask-shop-frontend"
 ---
 apiVersion: v1
 kind: Service
